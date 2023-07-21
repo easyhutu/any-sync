@@ -13,7 +13,7 @@
 
 # 使用方法
 
-### [下载对应可执行文件](/releases)
+### [下载对应可执行文件](https://github.com/easyhutu/any-sync/releases)
 
 ### 克隆项目
 ```shell
