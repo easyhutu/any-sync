@@ -20,17 +20,17 @@ var (
 )
 
 func main() {
-
+	gin.SetMode(gin.ReleaseMode)
 	cfg, _ := config.NewConfig()
 	engine := gin.Default()
-	engine.Delims("{[{", "}]}")
+
 	engine.SetHTMLTemplate(template.Must(template.New("").Delims("{[{", "}]}").ParseFS(htmlFs, "temps/*")))
 	engine.Any("/static/*filepath", func(context *gin.Context) {
 		staticServer := http.FileServer(http.FS(staticFs))
 		staticServer.ServeHTTP(context.Writer, context.Request)
 	})
 	engine.MaxMultipartMemory = cfg.MaxUploadFiles
-	println(engine.MaxMultipartMemory)
 	router.RegRouter(engine, cfg)
+	println("Server start: ", fmt.Sprintf("http://%s:%d", cfg.BoundIp, cfg.ListenPort))
 	engine.Run(fmt.Sprintf(":%d", cfg.ListenPort))
 }
