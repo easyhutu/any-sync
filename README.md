@@ -2,7 +2,12 @@
 
 局域网同步工具
 
+> PC端
+
 ![screen](/doc/pc.png)
+
+> 移动端
+
 ![screen](/doc/phone.png)
 
 
