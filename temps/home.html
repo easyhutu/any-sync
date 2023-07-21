@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ANY SYNC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap-4.6.2-dist/css/bootstrap.css" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div id="app">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg">
+                <figure class="figure">
+                    <img id="syncQR" src="/qr"
+                         class="figure-img img-fluid rounded align-content-center" alt="...">
+                    <figcaption class="figure-caption text-center">扫码或访问 {[{.shareUrl}]}</figcaption>
+                </figure>
+            </div>
+            <div class="col-lg">
+                <div style="margin-top: 20px" class="alert alert-success" role="alert">
+                    <span class="badge badge-light">我的设备</span> &nbsp;{{ devShow.show }}
+                </div>
+
+                <span class="badge badge-light">选择下列设备发起同步</span>
+
+
+                <div class="list-group" style="margin-top: 20px" role="tablist">
+
+                    <a @click="choiceDevClick(dev.md_5)" v-for="dev in syncDevs"
+                       class="list-group-item list-group-item-action" :key="dev.md_5"
+                       :id="dev.md_5" data-toggle="list" :href="'#'+dev.md_5" role="tab" aria-controls="home">{{dev.show}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                        <span class="badge badge-warning">同步文本</span>
+                        <textarea placeholder="请输入内容..." style="display: none" v-model="syncText" class="form-control"
+                                  id="syncTextVal" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg">
+                <div v-for="sst in showSyncText" class="card" style="width: auto;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="alert alert-success" role="alert">
+                                From:{{sst.from}}
+                            </div>
+                            <span class="badge badge-info">{{sst.sync_ti}}</span>
+                        </div>
+                        <p class="card-text user-select-all">{{sst.details[0].content}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <span class="badge badge-warning">同步文件</span>
+                <div class="card">
+                    <div id="uploadCard" style="display: none" class="card-body">
+                        <uploader @file-success="uploadSuccess" :options="UploadOptions" class="uploader-example">
+                            <uploader-unsupport></uploader-unsupport>
+                            <uploader-drop>
+                                <p>拖拽文件上传</p>
+                                <uploader-btn>选择文件</uploader-btn>
+                                <uploader-btn :attrs="attrs">选择图片</uploader-btn>
+                            </uploader-drop>
+                            <uploader-list></uploader-list>
+                        </uploader>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg">
+                <div v-for="sst in showSyncFile" class="card" style="width: auto;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="alert alert-success" role="alert">
+                                {{sst.from}} &nbsp;<span class="badge badge-light">{{sst.details.length}}</span>
+                            </div>
+
+
+                            <span class="badge badge-info">{{sst.sync_ti}}</span>
+                        </div>
+                        <ul class="list-group">
+                            <li v-for="sdt in sst.details" class="list-group-item">
+                                <a download="" target="_blank" :href="'/dev/dl/'+sdt.content">{{sdt.desc}}</a>
+                                <span class="badge badge-dark">{{sdt.size_show}}</span>
+                                <button @click="previewFileClick(sdt.file_ext, '/dev/dl/'+sdt.content)" v-if="sdt.can_preview" style="float: right" type="button" class="btn btn-outline-info btn-sm">查看</button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="syncPreviewModal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">详细信息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span v-html="previewInfo"></span>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<!--script-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/base64.min.js"></script>
+<script src="/static/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/vue-uploader.js"></script>
+
+<script src="/static/js/common.js"></script>
+<script>
+
+</script>
+</html>
