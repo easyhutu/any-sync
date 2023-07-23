@@ -9,6 +9,7 @@ import (
 
 func RegRouter(engine *gin.Engine, cfg *config.Config) {
 	svr := service.NewAnySyncSvr(cfg)
+	svr.InitWebSocket()
 
 	engine.GET("/", svr.Home)
 	engine.GET("/mobile", svr.Mobile)
@@ -20,6 +21,7 @@ func RegRouter(engine *gin.Engine, cfg *config.Config) {
 		dev.POST("/upload", svr.Upload)
 		dev.GET("/dl", svr.Download)
 		dev.GET("/dl/anySyncShare/:fmd5/:filename", svr.Download)
+		dev.GET("/ws/:channel", svr.SyncWebSocket) // websocket
 	}
 
 }

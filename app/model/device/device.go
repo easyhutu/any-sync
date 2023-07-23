@@ -7,16 +7,6 @@ import (
 	"time"
 )
 
-const (
-	SyncPending  = SyncStatus(1)
-	SyncOK       = SyncStatus(2)
-	SyncTypeText = SyncType("text")
-	SyncTypeFile = SyncType("file")
-)
-
-type SyncStatus int
-type SyncType string
-
 type Device struct {
 	Buvid    string    `json:"buvid,omitempty"`
 	Ua       string    `json:"ua,omitempty"`

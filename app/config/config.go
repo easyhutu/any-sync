@@ -19,10 +19,10 @@ type Config struct {
 func NewConfig() (config *Config, err error) {
 	config = &Config{
 		ListenPort:       8080,
-		PingSecond:       time.Second * 10,
-		QrSize:           260,
-		MaxUploadFiles:   260 << 20, // 260 Mib
-		ShareFilesPrefix: "anySyncShare",
+		PingSecond:       time.Minute * 16, // 超过心跳间隔删除设备
+		QrSize:           260,              // 分享二维码size
+		MaxUploadFiles:   1025 << 20,       // 最大上传文件大小 Mib
+		ShareFilesPrefix: "anySyncShare",   // 上传文件公共目录
 	}
 	config.BoundIp = device.GetBoundIp()
 	config.ShareUrl = fmt.Sprintf("http://%s:%d/mobile", config.BoundIp, config.ListenPort)

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="/static/bootstrap-4.6.2-dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/static/bootstrap-4.6.2-dist/font/bootstrap-icons.min.css" crossorigin="anonymous">
 </head>
 
 <body>
@@ -16,7 +17,12 @@
 
             <div class="col-lg">
                 <div style="margin-top: 20px" class="alert alert-success" role="alert">
-                    <span class="badge badge-light">我的设备</span> &nbsp;{{ devShow.show }}
+                    &nbsp;{{ devShow.show }}
+                    <span style="float: right" class="badge badge-light">
+                        设备
+                        <i v-show="ws !== null" style="color: #8fd19e" class="bi-wifi">已连接</i>
+                        <i v-show="ws === null" style="color: #5a6268" class="bi-wifi-off">中断</i>
+                    </span>
                 </div>
 
                 <span class="badge badge-light">选择下列设备发起同步</span>
@@ -47,7 +53,7 @@
                             <div class="alert alert-success" role="alert">
                                 From:{{sst.from}}
                             </div>
-                            <span class="badge badge-info">{{sst.sync_ti}}</span>
+                            <span class="badge badge-info">{{sst.show_ti}}</span>
                         </div>
                         <p class="card-text user-select-all">{{sst.details[0].content}}</p>
                     </div>
@@ -81,13 +87,20 @@
                             </div>
 
 
-                            <span class="badge badge-info">{{sst.sync_ti}}</span>
+                            <span class="badge badge-info">{{sst.show_ti}}</span>
                         </div>
                         <ul class="list-group">
                             <li v-for="sdt in sst.details" class="list-group-item">
+                                <i style="font-size: 1.1rem; color: cornflowerblue;"
+                                   :class="'bi-filetype-'+sdt.file_ext.replace('.', '')"></i>
                                 <a download="" target="_blank" :href="'/dev/dl/'+sdt.content">{{sdt.desc}}</a>
-                                <span class="badge badge-dark">{{sdt.size_show}}</span>
-                                <button @click="previewFileClick(sdt.file_ext, '/dev/dl/'+sdt.content)" v-if="sdt.can_preview" style="float: right" type="button" class="btn btn-outline-info btn-sm">查看</button>
+                                <span class="badge badge-light">{{sdt.size_show}}</span>
+                                <button @click="previewFileClick(sdt.file_ext, '/dev/dl/'+sdt.content)"
+                                        v-if="sdt.can_preview" style="float: right" type="button"
+                                        class="btn btn-outline-info btn-sm">
+                                    <i class="bi-search"></i>
+                                    查看
+                                </button>
                             </li>
                         </ul>
 
@@ -97,7 +110,8 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="syncPreviewModal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="syncPreviewModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -106,7 +120,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div style="text-align: center" class="modal-body">
                         <span v-html="previewInfo"></span>
 
                     </div>

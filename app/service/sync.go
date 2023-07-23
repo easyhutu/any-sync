@@ -25,18 +25,14 @@ func (svr *AnySyncSvr) Sync(ctx *gin.Context) {
 	println(fmt.Sprintf("hf:%+v, params: %+v", fromDev.HasFiles, params))
 
 	si := &device.SyncInfo{
-		From:    fromDev.Show,
-		FromMd5: fromDev.Md5,
-		SyncTi:  time.Now(),
-		Status:  device.SyncOK,
-		Details: []*device.SyncDetail{},
+		From:     fromDev.Show,
+		FromMd5:  fromDev.Md5,
+		SyncTi:   time.Now(),
+		Status:   device.SyncOK,
+		Details:  []*device.SyncDetail{},
+		SyncType: device.WithSyncType(params.SyncType),
 	}
-	if params.SyncType == "text" {
-		si.SyncType = device.SyncTypeText
-	}
-	if params.SyncType == "file" {
-		si.SyncType = device.SyncTypeFile
-	}
+	si.Generate()
 
 	sd := &device.SyncDetail{
 		Content: params.Content,

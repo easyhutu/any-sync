@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"sync"
 )
 
 func (svr *AnySyncSvr) Upload(ctx *gin.Context) {
@@ -83,6 +84,8 @@ func (svr *AnySyncSvr) Download(ctx *gin.Context) {
 
 func (svr *AnySyncSvr) addMuFileHs(identifier string, chunkNumber int, file *multipart.FileHeader) {
 	_, ok := svr.muFileHs[identifier]
+	lock := sync.Mutex{}
+	lock.Lock()
 	if !ok {
 		svr.muFileHs[identifier] = map[int]*bytes.Buffer{}
 	}
@@ -91,6 +94,7 @@ func (svr *AnySyncSvr) addMuFileHs(identifier string, chunkNumber int, file *mul
 	mb := &bytes.Buffer{}
 	io.Copy(mb, open)
 	svr.muFileHs[identifier][chunkNumber] = mb
+	lock.Unlock()
 }
 
 func (svr *AnySyncSvr) saveBlockFile(identifier, dst string) error {

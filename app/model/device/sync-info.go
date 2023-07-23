@@ -5,6 +5,17 @@ import (
 	"time"
 )
 
+const (
+	SyncPending    = SyncStatus(1)
+	SyncOK         = SyncStatus(2)
+	SyncTypeText   = SyncType("text")
+	SyncTypeFile   = SyncType("file")
+	SyncTypeIgnore = SyncType("ignore")
+)
+
+type SyncStatus int
+type SyncType string
+
 var (
 	PreviewExt = []string{
 		".png",
@@ -25,6 +36,7 @@ type SyncInfo struct {
 	Details  []*SyncDetail `json:"details,omitempty"`
 	Status   SyncStatus    `json:"status,omitempty"`
 	SyncTi   time.Time     `json:"sync_ti,omitempty"`
+	ShowTI   string        `json:"show_ti,omitempty"`
 }
 
 type SyncDetail struct {
@@ -44,5 +56,21 @@ func (sd *SyncDetail) CheckCanPreview() {
 		if strings.ToLower(sd.FileExt) == pe {
 			sd.CanPreview = true
 		}
+	}
+}
+
+func (s *SyncInfo) Generate() {
+	s.ShowTI = s.SyncTi.Format("2006-01-02 15:04:05")
+}
+
+func WithSyncType(val string) SyncType {
+	switch val {
+	case string(SyncTypeFile):
+		return SyncTypeFile
+	case string(SyncTypeText):
+		return SyncTypeText
+	default:
+		return SyncTypeIgnore
+
 	}
 }
