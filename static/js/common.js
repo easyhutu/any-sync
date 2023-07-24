@@ -15,7 +15,7 @@ window.vm = new Vue(
                     // https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js
                     target: '/dev/upload',
                     testChunks: false,
-                    chunkSize: 2 * 1024 * 1024
+                    chunkSize: 10 * 1024 * 1024
                 },
                 attrs: {
                     accept: 'image/*'

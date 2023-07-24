@@ -58,7 +58,8 @@
                     <div class="card-body">
                         <div class="card-title">
                             <div class="alert alert-success" role="alert">
-                                From:{{sst.from}}
+                                <i style="color: #17a2b8" class="bi bi-messenger"></i>
+                                {{sst.from}}
                             </div>
                             <span class="badge badge-info">{{sst.show_ti}}</span>
                         </div>
@@ -70,8 +71,8 @@
         <div class="row">
             <div class="col-lg">
                 <span class="badge badge-warning">同步文件</span>
-                <div class="card">
-                    <div id="uploadCard" style="display: none" class="card-body">
+                <div id="uploadCard" style="display: none" class="card">
+                    <div  class="card-body">
                         <uploader @file-success="uploadSuccess" :options="UploadOptions" class="uploader-example">
                             <uploader-unsupport></uploader-unsupport>
                             <uploader-drop>
@@ -90,7 +91,9 @@
                     <div class="card-body">
                         <div class="card-title">
                             <div class="alert alert-success" role="alert">
-                                {{sst.from}} &nbsp;<span class="badge badge-light">{{sst.details.length}}</span>
+                                <i style="color: #17a2b8" class="bi bi-messenger"></i>
+                                {{sst.from}} &nbsp;
+                                <span class="badge badge-light">{{sst.details.length}}</span>
                             </div>
 
 

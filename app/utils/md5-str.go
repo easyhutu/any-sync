@@ -14,7 +14,7 @@ func ToMd5Str(val []byte) string {
 
 func FileSizeFormat(size int64) string {
 	if size/1024 < 1024 {
-		return fmt.Sprintf("%dK", size/1024)
+		return fmt.Sprintf("%.2fK", float64(size)/1024)
 	}
-	return fmt.Sprintf("%dM", size/(1024*1024))
+	return fmt.Sprintf("%.2fM", float64(size)/(1024*1024))
 }
