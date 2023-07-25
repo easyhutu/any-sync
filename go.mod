@@ -1,4 +1,4 @@
-module any-sync
+module github.com/easyhutu/any-sync
 
 go 1.20
 
