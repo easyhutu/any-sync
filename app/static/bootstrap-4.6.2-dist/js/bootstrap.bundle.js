@@ -4,8 +4,8 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('static/js/jquery')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'static/js/jquery'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('app/static/js/jquery')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'app/static/js/jquery'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.bootstrap = {}, global.jQuery));
 })(this, (function (exports, $) { 'use strict';
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/easyhutu/any-sync/app"
 	"log"
 	"os"
 	"os/signal"
@@ -8,7 +9,7 @@ import (
 )
 
 func main() {
-	server := NewAnySyncServer()
+	server := app.NewAnySyncServer()
 	server.Run()
 
 	quit := make(chan os.Signal, 1)
