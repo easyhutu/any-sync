@@ -1,9 +1,9 @@
 package service
 
 import (
-	"any-sync/app/utils/middleware"
 	"bytes"
 	"fmt"
+	"github.com/easyhutu/any-sync/app/utils/middleware"
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"

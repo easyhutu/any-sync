@@ -48,7 +48,8 @@
                 <form>
                     <div class="form-group">
                         <span class="badge badge-warning">同步文本</span>
-                        <textarea placeholder="请输入内容..." style="display: none" v-model="syncText" class="form-control"
+                        <textarea placeholder="请输入内容..." style="display: none" v-model="syncText"
+                                  class="form-control"
                                   id="syncTextVal" rows="3"></textarea>
                     </div>
                 </form>
@@ -72,7 +73,7 @@
             <div class="col-lg">
                 <span class="badge badge-warning">同步文件</span>
                 <div id="uploadCard" style="display: none" class="card">
-                    <div  class="card-body">
+                    <div class="card-body">
                         <uploader @file-success="uploadSuccess" :options="UploadOptions" class="uploader-example">
                             <uploader-unsupport></uploader-unsupport>
                             <uploader-drop>

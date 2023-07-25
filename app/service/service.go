@@ -1,10 +1,10 @@
 package service
 
 import (
-	"any-sync/app/config"
-	"any-sync/app/model/device"
-	"any-sync/app/service/ws"
 	"bytes"
+	"github.com/easyhutu/any-sync/app/config"
+	"github.com/easyhutu/any-sync/app/model/device"
+	"github.com/easyhutu/any-sync/app/service/ws"
 	"github.com/gin-gonic/gin"
 	"sync"
 )

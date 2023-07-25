@@ -10,7 +10,6 @@
 
 ![screen](/doc/phone.png)
 
-
 # 使用方法
 
 ### [下载对应可执行文件](https://github.com/easyhutu/any-sync/releases)
@@ -21,11 +20,11 @@
 
 项目没有外漏配置参数，如需修改配置信息请查看 [/app/config/config.go](/app/config/config.go)
 
-
 ```shell
 go mod tidy
 go build -o anysync && anysync
 ```
 
 ***
+
 #### *注意：项目未做任何加密和鉴权处理，使用中请注意隐私保护*

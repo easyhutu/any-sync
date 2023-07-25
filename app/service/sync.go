@@ -1,9 +1,9 @@
 package service
 
 import (
-	"any-sync/app/model/device"
-	"any-sync/app/utils/middleware"
 	"fmt"
+	"github.com/easyhutu/any-sync/app/model/device"
+	"github.com/easyhutu/any-sync/app/utils/middleware"
 	"github.com/gin-gonic/gin"
 	"time"
 )

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"any-sync/app/config"
-	"any-sync/app/router"
 	"context"
 	"embed"
 	"fmt"
+	"github.com/easyhutu/any-sync/app/config"
+	"github.com/easyhutu/any-sync/app/router"
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"log"

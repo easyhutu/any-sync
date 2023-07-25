@@ -1,8 +1,8 @@
 package config
 
 import (
-	"any-sync/app/utils/device"
 	"fmt"
+	"github.com/easyhutu/any-sync/app/utils/device"
 	"time"
 )
 

@@ -1,7 +1,7 @@
 package ws
 
 import (
-	"any-sync/app/utils/middleware"
+	"github.com/easyhutu/any-sync/app/utils/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
 	"github.com/gorilla/websocket"

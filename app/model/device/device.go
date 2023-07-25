@@ -1,7 +1,7 @@
 package device
 
 import (
-	"any-sync/app/utils"
+	"github.com/easyhutu/any-sync/app/utils"
 	"path"
 	"strings"
 	"time"

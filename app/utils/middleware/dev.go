@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"any-sync/app/utils"
+	"github.com/easyhutu/any-sync/app/utils"
 	"github.com/gin-gonic/gin"
 )
 

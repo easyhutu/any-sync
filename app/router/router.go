@@ -1,9 +1,9 @@
 package router
 
 import (
-	"any-sync/app/config"
-	"any-sync/app/service"
-	"any-sync/app/utils/middleware"
+	"github.com/easyhutu/any-sync/app/config"
+	"github.com/easyhutu/any-sync/app/service"
+	"github.com/easyhutu/any-sync/app/utils/middleware"
 	"github.com/gin-gonic/gin"
 )
 

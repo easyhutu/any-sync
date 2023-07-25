@@ -1,8 +1,8 @@
 package service
 
 import (
-	"any-sync/app/model/device"
-	"any-sync/app/service/ws"
+	"github.com/easyhutu/any-sync/app/model/device"
+	"github.com/easyhutu/any-sync/app/service/ws"
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
 	"log"
