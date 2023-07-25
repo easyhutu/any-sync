@@ -26,22 +26,29 @@ window.vm = new Vue(
                     ping: 'ping',
                     pingGroup: 'pingGroup',
                     sync: 'sync',
-                }
+                },
+
             }
         },
         mounted: function () {
             this.pingDevice();
 
-            // 5min发起一次心跳检测
+            // 6min发起一次心跳检测,ws断开后1min发起一次重试
+            setInterval(
+                () => {
+                    if (this.ws !== null) {
+                        this.ws.send(JSON.stringify({type: this.wsMsgType.ping}))
+                    }
+                },
+                1000 * 60 * 6
+            )
             setInterval(
                 () => {
                     if (this.ws == null) {
                         this.pingDevice()
-                    } else {
-                        this.ws.send(JSON.stringify({type: this.wsMsgType.ping}))
                     }
                 },
-                1000 * 60 * 5
+                1000 * 60
             )
 
         },
@@ -71,7 +78,7 @@ window.vm = new Vue(
             },
             generateFileIcon: function (ext) {
                 let dfHtml = '<i class="bi-file-earmark"></i>'
-                if(
+                if (
                     [
                         '.js',
                         '.go',
@@ -83,7 +90,7 @@ window.vm = new Vue(
                         ".jpeg",
                         ".webp",
                     ].indexOf(ext) !== -1
-                ){
+                ) {
                     return `<i class="bi-filetype-${ext.replace('.', '')}"></i>`
                 }
 

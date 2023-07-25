@@ -57,26 +57,28 @@ func NewAnySyncServer() *AnySyncServer {
 	}
 }
 
-func (s *AnySyncServer) Run() {
+func (s *AnySyncServer) Run() bool {
 	if s.Status == SrvRunning {
 		log.Println("server is running...")
-		return
+		return true
 	}
-	s.Status = SrvRunning
+
 	go func() {
-		log.Printf("server start http://%s:%d", s.cfg.BoundIp, s.cfg.ListenPort)
 		if err := s.srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			s.Status = SrvStop
 			log.Fatalf("listen: %s\n", err)
 		}
 
 	}()
+	log.Printf("server start http://%s:%d", s.cfg.BoundIp, s.cfg.ListenPort)
+	s.Status = SrvRunning
+	return true
 }
 
-func (s *AnySyncServer) Stop() {
+func (s *AnySyncServer) Stop() bool {
 	if s.Status == SrvStop {
 		log.Println("server is stop...")
-		return
+		return true
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
@@ -86,4 +88,5 @@ func (s *AnySyncServer) Stop() {
 	}
 	s.Status = SrvStop
 	log.Println("Server exiting")
+	return true
 }
